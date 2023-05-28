@@ -1,4 +1,3 @@
-package gb.classwork.lesson4.keynode
+package org.blbulyandavbulyan.mydatalibrary.binarysearchthree.keynode
 
-class KeyNode<K: Comparable<K>>(key: K) : AbstractKeyNode<K, KeyNode<K>>(key){
-}
+class KeyNode<K: Comparable<K>>(key: K) : AbstractKeyNode<K, KeyNode<K>>(key)

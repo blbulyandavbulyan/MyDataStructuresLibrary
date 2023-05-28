@@ -1,7 +1,5 @@
-package gb.classwork.lesson4.binarysearchthree.unbalancedbinarysearchtree
+package org.blbulyandavbulyan.mydatalibrary.binarysearchthree.unbalancedbinarysearchtree
 
-import gb.classwork.lesson4.keynode.KeyNode
-import org.blbulyandavbulyan.mydatalibrary.binarysearchthree.unbalancedbinarysearchtree.AbstractUnbalancedBinarySearchTree
+import org.blbulyandavbulyan.mydatalibrary.binarysearchthree.keynode.KeyNode
 
-class UnbalancedBinarySearchTree<K : Comparable<K>> : AbstractUnbalancedBinarySearchTree<K, KeyNode<K>>({ key->KeyNode(key)}) {
-}
+class UnbalancedBinarySearchTree<K : Comparable<K>> : AbstractUnbalancedBinarySearchTree<K, KeyNode<K>>({ key-> KeyNode(key) })

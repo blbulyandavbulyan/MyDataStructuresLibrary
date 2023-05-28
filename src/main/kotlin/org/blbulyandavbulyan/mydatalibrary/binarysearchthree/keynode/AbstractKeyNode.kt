@@ -1,4 +1,4 @@
-package gb.classwork.lesson4.keynode
+package org.blbulyandavbulyan.mydatalibrary.binarysearchthree.keynode
 
 abstract class AbstractKeyNode<K: Comparable<K>, NT: AbstractKeyNode<K, NT>>(val key: K) {
     var parent: NT? = null

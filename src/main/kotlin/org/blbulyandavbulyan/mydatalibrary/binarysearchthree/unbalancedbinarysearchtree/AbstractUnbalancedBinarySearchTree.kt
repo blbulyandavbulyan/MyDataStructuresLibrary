@@ -1,6 +1,6 @@
 package org.blbulyandavbulyan.mydatalibrary.binarysearchthree.unbalancedbinarysearchtree
 
-import gb.classwork.lesson4.keynode.AbstractKeyNode
+import org.blbulyandavbulyan.mydatalibrary.binarysearchthree.keynode.AbstractKeyNode
 import org.blbulyandavbulyan.mydatalibrary.binarysearchthree.exceptions.KeyAlreadyAddedException
 import org.blbulyandavbulyan.mydatalibrary.binarysearchthree.exceptions.KeyNotFoundException
 import org.blbulyandavbulyan.mydatalibrary.binarysearchthree.exceptions.UnexpectedException
