@@ -1,6 +1,6 @@
-import org.blbulyandavbulyan.mydatalibrary.binarysearch.tree.exceptions.KeyAlreadyAddedException
-import org.blbulyandavbulyan.mydatalibrary.binarysearch.tree.exceptions.KeyNotFoundException
-import org.blbulyandavbulyan.mydatalibrary.binarysearch.tree.unbalancedbinarysearchtree.UnbalancedBinarySearchTree
+import org.blbulyandavbulyan.mydatalibrary.trees.binarysearch.exceptions.KeyAlreadyAddedException
+import org.blbulyandavbulyan.mydatalibrary.trees.binarysearch.exceptions.KeyNotFoundException
+import org.blbulyandavbulyan.mydatalibrary.trees.binarysearch.unbalancedbinarysearchtree.UnbalancedBinarySearchTree
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.Assertions

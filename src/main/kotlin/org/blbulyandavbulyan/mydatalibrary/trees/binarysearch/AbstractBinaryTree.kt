@@ -1,6 +1,6 @@
-package org.blbulyandavbulyan.mydatalibrary.binarysearch.tree
+package org.blbulyandavbulyan.mydatalibrary.trees.binarysearch
 
-import org.blbulyandavbulyan.mydatalibrary.binarysearch.tree.keynode.AbstractKeyNode
+import org.blbulyandavbulyan.mydatalibrary.trees.binarysearch.base.AbstractKeyNode
 
 interface AbstractBinaryTree<K : Comparable<K>, NT : AbstractKeyNode<K, NT>> {
     fun contains(key: K): Boolean

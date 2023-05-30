@@ -1,16 +1,15 @@
-package org.blbulyandavbulyan.mydatalibrary.binarysearch.tree.unbalancedbinarysearchtree
+package org.blbulyandavbulyan.mydatalibrary.trees.binarysearch.base
 
-import org.blbulyandavbulyan.mydatalibrary.binarysearch.tree.keynode.AbstractKeyNode
-import org.blbulyandavbulyan.mydatalibrary.binarysearch.tree.exceptions.KeyAlreadyAddedException
-import org.blbulyandavbulyan.mydatalibrary.binarysearch.tree.exceptions.KeyNotFoundException
-import org.blbulyandavbulyan.mydatalibrary.binarysearch.tree.exceptions.UnexpectedException
-import org.blbulyandavbulyan.mydatalibrary.binarysearch.tree.AbstractBinaryTree
+import org.blbulyandavbulyan.mydatalibrary.trees.binarysearch.AbstractBinaryTree
+import org.blbulyandavbulyan.mydatalibrary.trees.binarysearch.exceptions.KeyAlreadyAddedException
+import org.blbulyandavbulyan.mydatalibrary.trees.binarysearch.exceptions.KeyNotFoundException
+import org.blbulyandavbulyan.mydatalibrary.trees.binarysearch.exceptions.UnexpectedException
 import java.util.function.Function
 /**
 * Данный класс предоставляет реализацию двоичного дерева поиска без балансировки
 * @author David Blbulyan
 * */
-abstract class AbstractUnbalancedBinarySearchTree<K: Comparable<K>, NT : AbstractKeyNode<K, NT>>(private val ntProducer: Function<K, NT>) :
+abstract class AbstractBinarySearchTree<K: Comparable<K>, NT : AbstractKeyNode<K, NT>>(private val ntProducer: Function<K, NT>) :
     AbstractBinaryTree<K, NT> {
     private var size: Int = 0
     private var root: NT? = null;

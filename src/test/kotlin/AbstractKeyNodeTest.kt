@@ -1,4 +1,4 @@
-import org.blbulyandavbulyan.mydatalibrary.binarysearch.tree.keynode.KeyNode
+import org.blbulyandavbulyan.mydatalibrary.trees.binarysearch.unbalancedbinarysearchtree.KeyNode
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 class AbstractKeyNodeTest {

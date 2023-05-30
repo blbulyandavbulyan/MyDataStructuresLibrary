@@ -1,3 +1,3 @@
-package org.blbulyandavbulyan.mydatalibrary.binarysearch.tree.exceptions
+package org.blbulyandavbulyan.mydatalibrary.trees.binarysearch.exceptions
 
 class KeyAlreadyAddedException : RuntimeException("Такой ключ уже добавлен!")
