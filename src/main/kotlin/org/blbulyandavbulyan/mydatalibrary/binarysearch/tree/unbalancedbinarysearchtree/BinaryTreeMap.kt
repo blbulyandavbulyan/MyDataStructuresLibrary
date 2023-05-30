@@ -1,6 +1,6 @@
-package org.blbulyandavbulyan.mydatalibrary.binarysearchthree.unbalancedbinarysearchtree
+package org.blbulyandavbulyan.mydatalibrary.binarysearch.tree.unbalancedbinarysearchtree
 
-import org.blbulyandavbulyan.mydatalibrary.binarysearchthree.keynode.KeyValueNode
+import org.blbulyandavbulyan.mydatalibrary.binarysearch.tree.keynode.KeyValueNode
 
 class BinaryTreeMap<K:Comparable<K>, V> : AbstractUnbalancedBinarySearchTree<K, KeyValueNode<K, V>>({ key-> KeyValueNode(key, null) }){
     fun findValue(key: K): V? {

@@ -1,10 +1,10 @@
-package org.blbulyandavbulyan.mydatalibrary.binarysearchthree.unbalancedbinarysearchtree
+package org.blbulyandavbulyan.mydatalibrary.binarysearch.tree.unbalancedbinarysearchtree
 
-import org.blbulyandavbulyan.mydatalibrary.binarysearchthree.keynode.AbstractKeyNode
-import org.blbulyandavbulyan.mydatalibrary.binarysearchthree.exceptions.KeyAlreadyAddedException
-import org.blbulyandavbulyan.mydatalibrary.binarysearchthree.exceptions.KeyNotFoundException
-import org.blbulyandavbulyan.mydatalibrary.binarysearchthree.exceptions.UnexpectedException
-import org.blbulyandavbulyan.mydatalibrary.binarysearchthree.AbstractBinaryTree
+import org.blbulyandavbulyan.mydatalibrary.binarysearch.tree.keynode.AbstractKeyNode
+import org.blbulyandavbulyan.mydatalibrary.binarysearch.tree.exceptions.KeyAlreadyAddedException
+import org.blbulyandavbulyan.mydatalibrary.binarysearch.tree.exceptions.KeyNotFoundException
+import org.blbulyandavbulyan.mydatalibrary.binarysearch.tree.exceptions.UnexpectedException
+import org.blbulyandavbulyan.mydatalibrary.binarysearch.tree.AbstractBinaryTree
 import java.util.function.Function
 /**
 * Данный класс предоставляет реализацию двоичного дерева поиска без балансировки
@@ -93,7 +93,7 @@ abstract class AbstractUnbalancedBinarySearchTree<K: Comparable<K>, NT : Abstrac
             else if(node.key != currentNodeToInsert.key) throw UnexpectedException("Неожиданное исключение, ссылка в которую нужно записать оказалась не null!") //по идее это исключение не должно возникнуть, но мало ли;
         }
     }
-    override fun exists(key: K): Boolean {
+    override fun contains(key: K): Boolean {
         return findNode(key) != null
     }
 }

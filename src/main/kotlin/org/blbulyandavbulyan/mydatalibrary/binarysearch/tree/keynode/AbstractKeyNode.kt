@@ -1,4 +1,4 @@
-package org.blbulyandavbulyan.mydatalibrary.binarysearchthree.keynode
+package org.blbulyandavbulyan.mydatalibrary.binarysearch.tree.keynode
 
 abstract class AbstractKeyNode<K: Comparable<K>, NT: AbstractKeyNode<K, NT>>(val key: K) {
     var parent: NT? = null
