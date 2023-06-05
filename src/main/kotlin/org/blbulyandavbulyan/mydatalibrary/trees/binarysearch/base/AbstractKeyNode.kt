@@ -7,7 +7,8 @@ abstract class AbstractKeyNode<K: Comparable<K>, NT: AbstractKeyNode<K, NT>>(val
         internal set
     var right: NT? = null
         internal set
-    fun hasChild(): Boolean = left != null || right != null
+    fun hasChild(): Boolean = hasLeft() || hasRight()
     fun hasParent(): Boolean = parent != null
-
+    fun hasLeft(): Boolean = left != null
+    fun hasRight(): Boolean = right != null
 }
