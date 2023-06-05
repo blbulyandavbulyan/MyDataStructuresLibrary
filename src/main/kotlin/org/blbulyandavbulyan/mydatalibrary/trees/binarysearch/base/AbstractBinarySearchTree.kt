@@ -6,26 +6,52 @@ import org.blbulyandavbulyan.mydatalibrary.trees.binarysearch.exceptions.KeyNotF
 import org.blbulyandavbulyan.mydatalibrary.trees.binarysearch.exceptions.UnexpectedException
 import java.util.function.Function
 /**
-* Данный класс предоставляет реализацию двоичного дерева поиска без балансировки
-* @author David Blbulyan
+ * Данный класс предоставляет реализацию двоичного дерева поиска без балансировки
+ * @author David Blbulyan
+ * @param ntProducer функция, которая создаёт ноду, заданную параметром NT
+ * @param K тип ключа, который будет использоваться в дереве
+ * @param NT тип ноды, которая будет использоваться в дереве
 * */
-abstract class AbstractBinarySearchTree<K: Comparable<K>, NT : AbstractKeyNode<K, NT>>(private val ntProducer: Function<K, NT>) :
-    AbstractBinaryTree<K, NT> {
-    private var size: Int = 0
-    private var root: NT? = null;
+abstract class AbstractBinarySearchTree<K: Comparable<K>, NT : AbstractKeyNode<K, NT>>(private val ntProducer: Function<K, NT>) : AbstractBinaryTree<K, NT> {
+    /**
+     * Это свойство предоставляет количество узлов в дереве
+     * */
+    var size: Int = 0
+        protected set
+    /**
+     * Ссылка на корень
+     * Если она null - дерево пустое
+     * */
+    internal var root: NT? = null;
+    /**
+     * Данный метод ищет ноду по ключу
+     * @param key ключ для поиска
+     * @return ноду, ключ которой равен данному
+     * @throws KeyNotFoundException если такой ноды нет
+     * */
     override fun find(key: K): NT{
         val foundNode = findEndPoint(key)
         if(foundNode.key == key)return foundNode;
         else throw KeyNotFoundException();
     }
-
+    /**
+     * Данный метод добавляет ключ в дерево
+     * @param - ключ, который нужно добавить
+     * @return возвращает добавленную ноду с ключом key
+     * @throws KeyAlreadyAddedException если такая нода уже добавлена
+     * */
     override fun add(key: K): NT {
         val node = ntProducer.apply(key)
         findPlaceAndInsertNode(node)
         size++;
         return node
     }
-
+    /**
+     * Данный метод удаляет ноду по ключу
+     * @param key ключ по которому будет удалена нода
+     * @throws KeyNotFoundException если такой ноды в дереве нет
+     * @return удалённую ноду
+     * */
     override fun remove(key: K): NT {
         // FIXME: Здесь ещё внезапно может вылететь исключение KeyAlreadyAddedException проверить почему !!!
         val nodeForDelete = findEndPoint(key)

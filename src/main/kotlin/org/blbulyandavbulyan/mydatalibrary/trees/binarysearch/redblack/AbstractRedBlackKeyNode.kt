@@ -1,9 +1,8 @@
 package org.blbulyandavbulyan.mydatalibrary.trees.binarysearch.redblack
 
 import org.blbulyandavbulyan.mydatalibrary.trees.binarysearch.base.AbstractKeyNode
-import org.blbulyandavbulyan.mydatalibrary.trees.binarysearch.unbalancedbinarysearchtree.KeyNode
 
-class RedBlackKeyNode<K: Comparable<K>>(key: K): AbstractKeyNode<K, RedBlackKeyNode<K>>(key){
+abstract class AbstractRedBlackKeyNode<K: Comparable<K>, NT: AbstractRedBlackKeyNode<K, NT>>(key: K): AbstractKeyNode<K, NT>(key){
     enum class Color{RED, BLACK}
     var color: Color = Color.RED
         internal set
