@@ -7,14 +7,26 @@ abstract class AbstractRedBlackKeyNode<K: Comparable<K>, NT: AbstractRedBlackKey
     var color: Color = Color.RED
         internal set
     /**
+     * Перекрашивает текущую ноду в чёрный
+     * */
+    internal fun makeBlack(){
+        color = Color.BLACK
+    }
+    /**
+     * Перекрашивает текущую ноду в красный
+     * */
+    internal fun makeRed(){
+        color = Color.RED
+    }
+    /**
      * Функция делает свап цветов
      * Ноду над которой вызывается - делает красной
      * А её потомков чёрными
      * */
     internal fun swapColor(){
-        parent?.color = Color.RED
-        left?.color = Color.BLACK
-        right?.color = Color.BLACK
+        parent?.makeRed()
+        left?.makeBlack()
+        right?.makeBlack()
     }
     internal fun rotateLeft(){
 

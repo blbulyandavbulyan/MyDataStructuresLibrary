@@ -25,15 +25,23 @@ class AbstractRedBlackTree<K: Comparable<K>, NT: AbstractRedBlackKeyNode<K, NT>>
                 x = grandfather
             }
             else{//сюда мы попадём если у нас чёрный дядя
-                //по хорошему, нам надо знать какой ребёнок у нас x(левый или правый)
-                if(x.isLeft()){
-
+                //по-хорошему, нам надо знать какой ребёнок у нас x(левый или правый)
+                if((x.isRight() && father.isLeft()) || (x.isLeft() && father.isRight())){
+                    x = father
+                    if(x.isRight())x.rotateLeft()
+                    else x.rotateLeft()
+                }
+                else if((x.isLeft() && father.isLeft()) || (x.isRight() && father.isRight())){
+                    father.makeBlack()
+                    grandfather.makeRed()
+                    if(x.isLeft())grandfather.rotateRight()
+                    else grandfather.rotateLeft()
+                    break
                 }
             }
         }
         //делаем корень чёрным, поскольку он должен быть всегда чёрным
-        root?.color = AbstractRedBlackKeyNode.Color.BLACK
-        TODO("Сделать балансировку здесь")
+        root?.makeBlack()
     }
 
 }
