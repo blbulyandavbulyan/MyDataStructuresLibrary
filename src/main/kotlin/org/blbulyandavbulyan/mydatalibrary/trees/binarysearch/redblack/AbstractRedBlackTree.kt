@@ -34,8 +34,9 @@ class AbstractRedBlackTree<K: Comparable<K>, NT: AbstractRedBlackKeyNode<K, NT>>
                 else if((x.isLeft() && father.isLeft()) || (x.isRight() && father.isRight())){
                     father.makeBlack()
                     grandfather.makeRed()
-                    if(x.isLeft())grandfather.rotateRight()
+                    val possibleRoot = if(x.isLeft())grandfather.rotateRight()
                     else grandfather.rotateLeft()
+                    if(possibleRoot.parent == null)root=possibleRoot
                     break
                 }
             }
