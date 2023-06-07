@@ -1,6 +1,6 @@
 package org.blbulyandavbulyan.mydatalibrary.trees.binarysearch.redblack
 
-import org.blbulyandavbulyan.mydatalibrary.trees.base.AbstractBinarySearchTreeTest
+import org.blbulyandavbulyan.mydatalibrary.trees.binarysearch.base.AbstractBinarySearchTreeTest
 import org.junit.jupiter.api.Test
 
 class RedBlackTreeTest: AbstractBinarySearchTreeTest<RedBlackTree<Int>>() {

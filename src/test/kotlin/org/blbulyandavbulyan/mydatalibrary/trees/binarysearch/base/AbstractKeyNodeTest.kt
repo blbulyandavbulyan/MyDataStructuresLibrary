@@ -1,4 +1,4 @@
-package org.blbulyandavbulyan.mydatalibrary.trees.base
+package org.blbulyandavbulyan.mydatalibrary.trees.binarysearch.base
 
 import org.blbulyandavbulyan.mydatalibrary.trees.binarysearch.base.AbstractKeyNode
 import org.junit.jupiter.api.Assertions.*

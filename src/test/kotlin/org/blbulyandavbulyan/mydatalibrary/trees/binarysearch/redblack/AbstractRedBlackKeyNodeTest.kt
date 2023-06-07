@@ -1,6 +1,6 @@
 package org.blbulyandavbulyan.mydatalibrary.trees.binarysearch.redblack
 
-import org.blbulyandavbulyan.mydatalibrary.trees.base.AbstractKeyNodeTest
+import org.blbulyandavbulyan.mydatalibrary.trees.binarysearch.base.AbstractKeyNodeTest
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.Assertions.*
 class AbstractRedBlackKeyNodeTest : AbstractKeyNodeTest<RedBlackKeyNode<Int>>() {
