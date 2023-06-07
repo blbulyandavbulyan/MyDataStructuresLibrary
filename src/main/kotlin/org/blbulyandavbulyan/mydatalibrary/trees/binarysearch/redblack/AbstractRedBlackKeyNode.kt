@@ -30,29 +30,23 @@ abstract class AbstractRedBlackKeyNode<K: Comparable<K>, NT: AbstractRedBlackKey
     }
     internal fun rotateLeft(): NT{
         val b: NT = this as NT
-        val d: NT = b.right ?: throw RuntimeException("Нет правого ребёнка для левого поворота")
-        b.parent?.replaceChild(b, d) ?: {d.parent = null}
+        val d: NT = b.right ?: throw UnsupportedOperationException("Нет правого ребёнка для левого поворота")
+        b.parent?.replaceChild(b, d) ?: run { d.parent = null}
         b.right = d.left
-        b.right?.parent = b
+        //b.right?.parent = b логика обновления родителя инкапсулирована в сеттер
         d.left = b
-        b.parent = d
+        //b.parent = d
         return d
     }
     internal fun rotateRight(): NT{
         val d: NT = this as NT
-        val b: NT = d.left ?: throw RuntimeException("Нет левого ребёнка для правого поворота!")
-        d.parent?.replaceChild(d, b) ?: {b.parent = null}
+        val b: NT = d.left ?: throw UnsupportedOperationException("Нет левого ребёнка для правого поворота!")
+        d.parent?.replaceChild(d, b) ?: run {b.parent = null}
         d.left = b.right
-        d.left?.parent = d
+        //d.left?.parent = d
         b.right = d
-        d.parent = b
+        //d.parent = b
         return b
-    }
-    internal fun replaceChild(replacingChild: NT, newChild: NT){
-        if(replacingChild === left) left = newChild
-        else if(replacingChild === right) right = newChild
-        else throw IllegalStateException("Невозможно заменить ребёнка, т.к. replacingChild не является ребёнком данной ноды")
-        newChild.parent = this as NT
     }
     /**
      * Функция проверяет на красноту обеих детей
