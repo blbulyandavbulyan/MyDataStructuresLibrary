@@ -1,22 +1,25 @@
+package org.blbulyandavbulyan.mydatalibrary.trees.base
+
+import org.blbulyandavbulyan.mydatalibrary.trees.binarysearch.AbstractBinaryTree
 import org.blbulyandavbulyan.mydatalibrary.trees.binarysearch.exceptions.KeyAlreadyAddedException
 import org.blbulyandavbulyan.mydatalibrary.trees.binarysearch.exceptions.KeyNotFoundException
-import org.blbulyandavbulyan.mydatalibrary.trees.binarysearch.unbalancedbinarysearchtree.UnbalancedBinarySearchTree
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.Assertions
 import java.lang.RuntimeException
 import kotlin.random.Random
 
-class UnbalancedBinarySearchTreeTest {
+abstract class AbstractBinarySearchTreeTest<ABT: AbstractBinaryTree<Int, *>> {
     private var inputData: Collection<Int>? = null
-    private var tree: UnbalancedBinarySearchTree<Int>? = null
+    private var tree: ABT? = null
     private fun generateData(count: Int = 100) = generateSequence(Random::nextInt).distinct().take(count).toList()
-    private fun getNotNullData() : Pair<UnbalancedBinarySearchTree<Int>, Collection<Int>> = Pair(tree ?: throw RuntimeException("WTF, tree is null!"), inputData ?: throw RuntimeException("WTF, inputdata is null!!"))
+    private fun getNotNullData() : Pair<ABT, Collection<Int>> = Pair(tree ?: throw RuntimeException("WTF, tree is null!"), inputData ?: throw RuntimeException("WTF, inputdata is null!!"))
     private fun generateNotEqualData(data: Collection<Int>): Collection<Int> =
         generateSequence(Random::nextInt).filter { it !in data }.take(data.size).toList()
+    abstract fun createBinaryTree(): ABT
     @BeforeEach
     fun fill_tree(){
-        val tree = UnbalancedBinarySearchTree<Int>()
+        val tree = createBinaryTree()
         val inputData: Collection<Int> = generateData()
         for (key in inputData){
             try {
@@ -30,7 +33,7 @@ class UnbalancedBinarySearchTreeTest {
         this.tree = tree
     }
     @Test
-    fun exist(){
+    fun `contains all added elements`(){
         val (nnTree, nnInputData) = getNotNullData()
         //проверка в том же порядке, в каком и добавляли
         val checker:(Int)->Unit = { k->
@@ -50,7 +53,7 @@ class UnbalancedBinarySearchTreeTest {
             checker(key)
         }
     }
-    @Test fun `not exist`(){
+    @Test fun `not contains not added elements`(){
         val (nnTree, nnInputData) = getNotNullData()
         val shouldNotExist = generateNotEqualData(nnInputData)
         for (key in shouldNotExist){
@@ -182,5 +185,6 @@ class UnbalancedBinarySearchTreeTest {
             tree.find(20)
         }
     }
-    private fun createBinaryTree(): UnbalancedBinarySearchTree<Int> = UnbalancedBinarySearchTree<Int>()
+
 }
+

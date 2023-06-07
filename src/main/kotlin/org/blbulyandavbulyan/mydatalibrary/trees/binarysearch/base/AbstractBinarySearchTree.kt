@@ -4,6 +4,8 @@ import org.blbulyandavbulyan.mydatalibrary.trees.binarysearch.AbstractBinaryTree
 import org.blbulyandavbulyan.mydatalibrary.trees.binarysearch.exceptions.KeyAlreadyAddedException
 import org.blbulyandavbulyan.mydatalibrary.trees.binarysearch.exceptions.KeyNotFoundException
 import org.blbulyandavbulyan.mydatalibrary.trees.binarysearch.exceptions.UnexpectedException
+import java.util.LinkedList
+import java.util.Queue
 import java.util.function.Function
 /**
  * Данный класс предоставляет реализацию двоичного дерева поиска без балансировки
@@ -139,5 +141,23 @@ abstract class AbstractBinarySearchTree<K: Comparable<K>, NT : AbstractKeyNode<K
     * */
     override fun contains(key: K): Boolean {
         return findEndPoint(key).key == key
+    }
+    override fun iterator(): Iterator<NT> = object : Iterator<NT>{
+        val nodes: Queue<NT> = LinkedList<NT>()
+        init {
+            if(root != null)
+                nodes.add(root)
+        }
+        override fun hasNext(): Boolean = !nodes.isEmpty()
+
+        override fun next(): NT {
+            if(nodes.isEmpty()){
+                val result = nodes.poll()
+                if(result.hasLeft())nodes.add(result.left)
+                if(result.hasRight())nodes.add(result.right)
+                return result
+            }
+            else throw NoSuchElementException()
+        }
     }
 }

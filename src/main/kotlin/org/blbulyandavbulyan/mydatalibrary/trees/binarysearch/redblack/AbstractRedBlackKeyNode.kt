@@ -28,6 +28,11 @@ abstract class AbstractRedBlackKeyNode<K: Comparable<K>, NT: AbstractRedBlackKey
         left?.makeBlack()
         right?.makeBlack()
     }
+    /**
+     * Левый поворот ноды
+     * @return новый корень поддерева
+     * @throws UnsupportedOperationException если у данной ноды нет правого ребёнка
+     * */
     internal fun rotateLeft(): NT{
         val b: NT = this as NT
         val d: NT = b.right ?: throw UnsupportedOperationException("Нет правого ребёнка для левого поворота")
@@ -38,6 +43,11 @@ abstract class AbstractRedBlackKeyNode<K: Comparable<K>, NT: AbstractRedBlackKey
         //b.parent = d
         return d
     }
+    /**
+     * Правый поворот ноды
+     * @return новый корень поддерева
+     * @throws UnsupportedOperationException если у данной ноды нет левого ребёнка
+     * */
     internal fun rotateRight(): NT{
         val d: NT = this as NT
         val b: NT = d.left ?: throw UnsupportedOperationException("Нет левого ребёнка для правого поворота!")

@@ -2,7 +2,7 @@ package org.blbulyandavbulyan.mydatalibrary.trees.binarysearch.redblack
 
 import org.blbulyandavbulyan.mydatalibrary.trees.binarysearch.base.AbstractBinarySearchTree
 
-class AbstractRedBlackTree<K: Comparable<K>, NT: AbstractRedBlackKeyNode<K, NT>>(ntProducer: (K)->NT) : AbstractBinarySearchTree<K, NT>(ntProducer) {
+open class AbstractRedBlackTree<K: Comparable<K>, NT: AbstractRedBlackKeyNode<K, NT>>(ntProducer: (K)->NT) : AbstractBinarySearchTree<K, NT>(ntProducer) {
     override fun remove(key: K): NT {
         TODO("Исправить это место, написать и удаление и балансировку после него")
     }

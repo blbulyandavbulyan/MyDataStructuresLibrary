@@ -26,6 +26,15 @@ class AbstractRedBlackKeyNodeTest : AbstractKeyNodeTest<RedBlackKeyNode<Int>>() 
         assertTrue(b.left === a, "Левый элемент у правого элемента корня поддерева изменился!")
         assertTrue(b.right === c, "Правый элемент у левого элемента корня поддерева не соответствует ожидаемому")
     }
+    @Test fun `rotateLeft must throw UnsupportedOperationException if there is no right child`(){
+        val b = createNode(20)
+        val a = createNode(15)
+        b.left = a
+        assertThrows(UnsupportedOperationException::class.java){
+            b.rotateLeft()
+        }
+    }
+
     @Test fun `rotate right all of operating children are not null and rotating node doesn't have a parent`(){
         val d = createNode(20)
         val b = createNode(15)
@@ -43,6 +52,13 @@ class AbstractRedBlackKeyNodeTest : AbstractKeyNodeTest<RedBlackKeyNode<Int>>() 
         assertTrue(b.right === d, "Правый ребёнок у корня не соответствует ожидаемому!")
         assertTrue(d.left === c, "Левый ребёнок у правого ребёнка корня не соответствует ожидаемому!")
         assertTrue(d.right === a, "Правый ребёнок у правого ребёнка корня не соответствует ожидаемому")
+    }
+    @Test fun `rotateRight must throw UnsupportedOperationException if there is no left child`(){
+        val r = createNode(20);
+        r.right = createNode(30)
+        assertThrows(UnsupportedOperationException::class.java){
+            r.rotateRight()
+        }
     }
     @Test fun `new node should be red`(){
         val g = createNode(10)
