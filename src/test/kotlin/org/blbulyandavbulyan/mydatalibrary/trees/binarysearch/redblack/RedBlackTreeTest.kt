@@ -21,7 +21,7 @@ class RedBlackTreeTest: AbstractBinarySearchTreeTest<RedBlackTree<Int>>() {
         }
         Assertions.assertEquals(1, depths.size, "На некоторых путях обнаружены разные чёрные глубины!")
     }
-    @Test fun `all red nodes have only red children`(){
+    @Test fun `all red nodes have only black children`(){
         val (nnTree, _) = getNotNullData()
         nnTree.iterator().asSequence().filter { node->node.hasParent() && node.isRed() }.forEach {node->
             Assertions.assertFalse(node.parent?.isRed() == true, "У красной ноды есть красный родитель!")

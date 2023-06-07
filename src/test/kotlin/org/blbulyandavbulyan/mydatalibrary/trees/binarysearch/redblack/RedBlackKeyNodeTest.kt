@@ -3,7 +3,7 @@ package org.blbulyandavbulyan.mydatalibrary.trees.binarysearch.redblack
 import org.blbulyandavbulyan.mydatalibrary.trees.binarysearch.base.AbstractKeyNodeTest
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.Assertions.*
-class AbstractRedBlackKeyNodeTest : AbstractKeyNodeTest<RedBlackKeyNode<Int>>() {
+class RedBlackKeyNodeTest : AbstractKeyNodeTest<RedBlackKeyNode<Int>>() {
     override fun createNode(key: Int): RedBlackKeyNode<Int> {
         return RedBlackKeyNode(key);
     }

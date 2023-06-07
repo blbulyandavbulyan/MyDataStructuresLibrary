@@ -24,7 +24,7 @@ abstract class AbstractRedBlackKeyNode<K: Comparable<K>, NT: AbstractRedBlackKey
      * А её потомков чёрными
      * */
     internal fun swapColor(){
-        parent?.makeRed()
+        makeRed()
         left?.makeBlack()
         right?.makeBlack()
     }

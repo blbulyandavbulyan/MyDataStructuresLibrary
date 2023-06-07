@@ -26,16 +26,15 @@ open class AbstractRedBlackTree<K: Comparable<K>, NT: AbstractRedBlackKeyNode<K,
             }
             //сюда мы попадём если у нас чёрный дядя
             else if((x.isRight() && father.isLeft()) || (x.isLeft() && father.isRight())){ //по-хорошему, нам надо знать какой ребёнок у нас x(левый или правый)
-                if(x.isRight())father.rotateLeft()
-                else father.rotateRight()
                 x = father
+                if(father.isLeft())x.rotateLeft()
+                else x.rotateRight()
+
             }
             else if((x.isLeft() && father.isLeft()) || (x.isRight() && father.isRight())){
                 father.makeBlack()
                 grandfather.makeRed()
-                val possibleRoot =
-                    if(x.isLeft())grandfather.rotateRight()
-                    else grandfather.rotateLeft()
+                val possibleRoot = if(x.isLeft()) grandfather.rotateRight() else grandfather.rotateLeft()
                 if(possibleRoot.parent == null)root=possibleRoot
                 break
             }
