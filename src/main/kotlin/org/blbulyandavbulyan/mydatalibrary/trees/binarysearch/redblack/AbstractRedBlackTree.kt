@@ -16,7 +16,7 @@ open class AbstractRedBlackTree<K: Comparable<K>, NT: AbstractRedBlackKeyNode<K,
         // пока наш x - красный и у него родитель красный
         while (x.isRed() && x.parent?.isRed() == true){
             val father: NT = x.parent ?: break // WTF ? parent же не может быть здесь null
-            val grandfather: NT = father.parent?.parent ?: throw IllegalStateException("Ошибка балансировки, у родителя красного балансируемого элемента отсутствует родителль!")
+            val grandfather: NT = father.parent ?: throw IllegalStateException("Ошибка балансировки, у родителя красного балансируемого элемента отсутствует родителль!")
             //здесь избыточная проверка обоих детей дедушки, на то что они красные, чтобы проверить что наш дядя тоже красный
             //для того чтобы не разбираться кто из них левый, а кто правый
             if(grandfather.areBothChildrenRed()){//красный дядя
@@ -24,21 +24,20 @@ open class AbstractRedBlackTree<K: Comparable<K>, NT: AbstractRedBlackKeyNode<K,
                 grandfather.swapColor()
                 x = grandfather
             }
-            else{//сюда мы попадём если у нас чёрный дядя
-                //по-хорошему, нам надо знать какой ребёнок у нас x(левый или правый)
-                if((x.isRight() && father.isLeft()) || (x.isLeft() && father.isRight())){
-                    x = father
-                    if(x.isRight())x.rotateLeft()
-                    else x.rotateLeft()
-                }
-                else if((x.isLeft() && father.isLeft()) || (x.isRight() && father.isRight())){
-                    father.makeBlack()
-                    grandfather.makeRed()
-                    val possibleRoot = if(x.isLeft())grandfather.rotateRight()
+            //сюда мы попадём если у нас чёрный дядя
+            else if((x.isRight() && father.isLeft()) || (x.isLeft() && father.isRight())){ //по-хорошему, нам надо знать какой ребёнок у нас x(левый или правый)
+                if(x.isRight())father.rotateLeft()
+                else father.rotateRight()
+                x = father
+            }
+            else if((x.isLeft() && father.isLeft()) || (x.isRight() && father.isRight())){
+                father.makeBlack()
+                grandfather.makeRed()
+                val possibleRoot =
+                    if(x.isLeft())grandfather.rotateRight()
                     else grandfather.rotateLeft()
-                    if(possibleRoot.parent == null)root=possibleRoot
-                    break
-                }
+                if(possibleRoot.parent == null)root=possibleRoot
+                break
             }
         }
         //делаем корень чёрным, поскольку он должен быть всегда чёрным

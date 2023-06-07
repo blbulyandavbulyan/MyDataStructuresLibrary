@@ -10,11 +10,11 @@ import java.lang.RuntimeException
 import kotlin.random.Random
 
 abstract class AbstractBinarySearchTreeTest<ABT: AbstractBinaryTree<Int, *>> {
-    private var inputData: Collection<Int>? = null
-    private var tree: ABT? = null
-    private fun generateData(count: Int = 100) = generateSequence(Random::nextInt).distinct().take(count).toList()
-    private fun getNotNullData() : Pair<ABT, Collection<Int>> = Pair(tree ?: throw RuntimeException("WTF, tree is null!"), inputData ?: throw RuntimeException("WTF, inputdata is null!!"))
-    private fun generateNotEqualData(data: Collection<Int>): Collection<Int> =
+    protected var inputData: Collection<Int>? = null
+    protected var tree: ABT? = null
+    protected fun generateData(count: Int = 100) = generateSequence(Random::nextInt).distinct().take(count).toList()
+    protected fun getNotNullData() : Pair<ABT, Collection<Int>> = Pair(tree ?: throw RuntimeException("WTF, tree is null!"), inputData ?: throw RuntimeException("WTF, inputdata is null!!"))
+    protected fun generateNotEqualData(data: Collection<Int>): Collection<Int> =
         generateSequence(Random::nextInt).filter { it !in data }.take(data.size).toList()
     abstract fun createBinaryTree(): ABT
     @BeforeEach
@@ -63,6 +63,15 @@ abstract class AbstractBinarySearchTreeTest<ABT: AbstractBinaryTree<Int, *>> {
             catch (e: Exception){
                 Assertions.fail("Ошибка проверки на несуществующий ключ $key, набор ключей: $nnInputData", e)
             }
+        }
+    }
+    @Test fun `iterator gives all added nodes and not more`(){
+        val (nnTree, nnInputData) = getNotNullData()
+        val addedNodes = nnTree.iterator().asSequence().toList()
+        Assertions.assertTrue(addedNodes.size == nnInputData.size, "Количество нод выданных итератором отличается от добавленного")
+        val addedKeys = addedNodes.map { it.key }.toSet()
+        nnInputData.forEach {
+            Assertions.assertTrue(addedKeys.contains(it), "Среди ключей полученых итератором нет добавленого значения")
         }
     }
     @Test fun `ordered remove all data`(){

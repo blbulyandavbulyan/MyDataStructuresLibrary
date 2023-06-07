@@ -151,7 +151,7 @@ abstract class AbstractBinarySearchTree<K: Comparable<K>, NT : AbstractKeyNode<K
         override fun hasNext(): Boolean = !nodes.isEmpty()
 
         override fun next(): NT {
-            if(nodes.isEmpty()){
+            if(!nodes.isEmpty()){
                 val result = nodes.poll()
                 if(result.hasLeft())nodes.add(result.left)
                 if(result.hasRight())nodes.add(result.right)
