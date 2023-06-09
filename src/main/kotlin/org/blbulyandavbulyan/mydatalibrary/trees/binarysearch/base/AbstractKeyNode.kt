@@ -1,6 +1,32 @@
 package org.blbulyandavbulyan.mydatalibrary.trees.binarysearch.base
 
-abstract class AbstractKeyNode<K: Comparable<K>, NT: AbstractKeyNode<K, NT>>(val key: K) {
+import org.blbulyandavbulyan.mydatalibrary.trees.binarysearch.exceptions.IllegalRealizationException
+
+abstract class AbstractKeyNode<K: Comparable<K>, NT: AbstractKeyNode<K, NT>>(key: K) {
+    var key: K = key
+        private set(value){
+            //проверка перед установкой нового ключа:
+            //если есть правый ребёнок у данной ноды, то данный ключ должен быть меньше её ключа
+            //если есть левый ребёнок у данной ноды, то данный ключ должен быть больше её ключа
+            //если у данной ноды есть родитель, то данный ключ должен быть: больше ключа родителя, если она правая или меньше ключа родителя если она левая
+
+            //сравнение с ключом детей, если таковые имеются
+            //сравнение с ключом правого ребёнка
+            if (hasRight() && value >= (right?.key ?: throw IllegalRealizationException("Неверная реализация функции hasRight! Должна вернуть false если правый ребёнок null!")))
+                throw IllegalArgumentException("Новый ключ должен быть меньше чем у правой ноды!")
+            //сравнение с ключом левого ребёнка
+            if (hasLeft() && value <= (left?.key ?: throw IllegalRealizationException("Неверная реализация функции hasLeft! Должна вернуть false если левый ребёнок null!")))
+                throw IllegalArgumentException("Новый ключ должен быть больше чем у левой ноды!")
+            //сравнение с родительским ключом, если есть родитель
+            //сравнение с родительским ключом если мы левый ребёнок
+            if(isLeft() && value >= (parent?.key ?: throw IllegalRealizationException("Неверная реализация функции isLeft! Должна вернуть false если родитель null!")))
+                throw IllegalArgumentException("Текущая нода левый ребёнок, новый ключ должен быть меньше родительского!")
+            //сравнение с родительским ключом если мы правый ребёнок
+            if (isRight() && value <= (parent?.key ?: throw IllegalRealizationException("Неверная реализация функции isRight! Должна вернуть false если родитель null!")))
+                throw IllegalArgumentException("Текущая нода правый ребёнок и её значение должно быть больше родительского!")
+            //все проверки прошли успешно, значит наш ключ можно заменять на новй
+            field = value
+        }
     var parent: NT? = null
         internal set
     var left: NT? = null
@@ -76,4 +102,19 @@ abstract class AbstractKeyNode<K: Comparable<K>, NT: AbstractKeyNode<K, NT>>(val
      * @return True - если да, False - если нет и если нет родителя у текущей ноды
      * */
     fun isRight(): Boolean = parent?.right === this
+    /**
+     * Функция обменивает ключи между текущей нодой и данной
+     * */
+    internal fun swapKeys(anotherNode: NT){
+        val myOldKey: K = replaceKey(anotherNode.key)
+        anotherNode.replaceKey(myOldKey)
+    }
+    /**
+     * Функция заменяет текущий ключ на новый
+     * */
+    internal fun replaceKey(newKey: K): K{
+        val oldValue: K = this.key
+        this.key = key
+        return oldValue
+    }
 }
