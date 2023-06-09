@@ -73,15 +73,5 @@ abstract class AbstractRedBlackKeyNode<K: Comparable<K>, NT: AbstractRedBlackKey
      * @return True - если чёрная, иначе False
      * */
     fun isBlack(): Boolean = color == Color.BLACK
-    /**
-     * Функция проверяет текущую ноду на то, левая ли она у своего родителя
-     * @return True - если да, False - если нет и если нет родителя у текущей ноды
-     * */
-    fun isLeft(): Boolean = parent?.left === this
-    /**
-     * Функция проверяет текущую ноду на то, правая ли она у своего родителя
-     * @return True - если да, False - если нет и если нет родителя у текущей ноды
-     * */
-    fun isRight(): Boolean = parent?.right === this
 
 }
