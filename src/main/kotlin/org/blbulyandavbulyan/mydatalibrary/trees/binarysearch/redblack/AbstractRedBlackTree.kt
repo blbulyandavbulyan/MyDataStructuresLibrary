@@ -4,6 +4,11 @@ import org.blbulyandavbulyan.mydatalibrary.trees.binarysearch.base.AbstractBinar
 
 open class AbstractRedBlackTree<K: Comparable<K>, NT: AbstractRedBlackKeyNode<K, NT>>(ntProducer: (K)->NT) : AbstractBinarySearchTree<K, NT>(ntProducer) {
     override fun remove(key: K): NT {
+        val node: NT = find(key);
+        if(node.isRed() && node.hasLeft() &&  node.hasRight()){
+
+        }
+
         TODO("Исправить это место, написать и удаление и балансировку после него")
     }
     override fun add(key: K): NT {

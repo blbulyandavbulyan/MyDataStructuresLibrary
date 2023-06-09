@@ -4,6 +4,11 @@ abstract class AbstractKeyNode<K: Comparable<K>, NT: AbstractKeyNode<K, NT>>(val
     var parent: NT? = null
         internal set
     var left: NT? = null
+        /**
+         * Устанавливает левого ребёнка в данной ноде
+         * @param value новый левый ребёнок
+         * @throws IllegalArgumentException если добавляемая нода не null и у неё ключ не меньше чем у данной
+         * */
         internal set(value){
             if(value == null || value.key < key){
                 field = value
@@ -12,6 +17,11 @@ abstract class AbstractKeyNode<K: Comparable<K>, NT: AbstractKeyNode<K, NT>>(val
             else throw IllegalArgumentException("Нода не может быть добавлена к данной в качестве левой, т.к. добавляемая нода не null и её ключ должен быть меньше чем ключ в данной!")
         }
     var right: NT? = null
+        /**
+         * Устанавливает правого ребёнка в данной ноде и в нём устанавливает родителя на текущую ноду
+         * @param value новый правый ребёнок
+         * @throws IllegalArgumentException если добавляемая нода не null и у неё ключ не больше чем у данной
+         * */
         internal set(value){
             if(value == null || value.key > key){
                 field = value
@@ -19,6 +29,12 @@ abstract class AbstractKeyNode<K: Comparable<K>, NT: AbstractKeyNode<K, NT>>(val
             }
             else throw IllegalArgumentException("Нода не может быть добавлена к данной в качестве правой, т.к. добавляемая нода не null и её ключ должен быть больше чем ключ в данной!")
         }
+    /**
+     * Проверяет есть ли у данной ноды оба ребёнка
+     * @return true если да, иначе false
+     * */
+    fun hasTwoChildren(): Boolean = hasLeft() && hasRight()
+
     /**
      * Проверяет, есть ли у данной ноды хотя бы один ребёнок
      * @return true если есть, иначе false
