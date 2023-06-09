@@ -81,6 +81,40 @@ abstract class AbstractKeyNode<K: Comparable<K>, NT: AbstractKeyNode<K, NT>>(key
      * @return true если да, иначе false
      * */
     fun hasRight(): Boolean = right != null
+
+    /**
+     * Функция проверяет текущую ноду на то, левая ли она у своего родителя
+     * @return True - если да, False - если нет и если нет родителя у текущей ноды
+     * */
+    fun isLeft(): Boolean = parent?.left === this
+
+    /**
+     * Функция проверяет текущую ноду на то, правая ли она у своего родителя
+     * @return True - если да, False - если нет и если нет родителя у текущей ноды
+     * */
+    fun isRight(): Boolean = parent?.right === this
+
+    /**
+     * Функция обменивает ключи между текущей нодой и данной
+     * */
+    internal fun swapKeys(anotherNode: NT){
+        val myOldKey: K = replaceKey(anotherNode.key)
+        anotherNode.replaceKey(myOldKey)
+    }
+
+    /**
+     * Функция заменяет текущий ключ на новый
+     * @param newKey новый ключ
+     * @return старый ключ
+     * @throws IllegalArgumentException если ключ не вписывается в иерархию дерева, если он не больше левого или не меньше правого
+     * либо если данная нода левая и ключ не меньше родительского, либо она правая и ключ не больше родительского
+     * */
+    internal fun replaceKey(newKey: K): K{
+        val oldValue: K = this.key
+        this.key = newKey
+        return oldValue
+    }
+
     /**
      * Заменяет соответствующего ребёнка в данной ноде, на нового
      * @return старого ребёнка
@@ -91,30 +125,5 @@ abstract class AbstractKeyNode<K: Comparable<K>, NT: AbstractKeyNode<K, NT>>(key
         else if(replacingChild === right) right = newChild
         else throw IllegalArgumentException("Невозможно заменить ребёнка, т.к. replacingChild не является ребёнком данной ноды")
         return replacingChild
-    }
-    /**
-     * Функция проверяет текущую ноду на то, левая ли она у своего родителя
-     * @return True - если да, False - если нет и если нет родителя у текущей ноды
-     * */
-    fun isLeft(): Boolean = parent?.left === this
-    /**
-     * Функция проверяет текущую ноду на то, правая ли она у своего родителя
-     * @return True - если да, False - если нет и если нет родителя у текущей ноды
-     * */
-    fun isRight(): Boolean = parent?.right === this
-    /**
-     * Функция обменивает ключи между текущей нодой и данной
-     * */
-    internal fun swapKeys(anotherNode: NT){
-        val myOldKey: K = replaceKey(anotherNode.key)
-        anotherNode.replaceKey(myOldKey)
-    }
-    /**
-     * Функция заменяет текущий ключ на новый
-     * */
-    internal fun replaceKey(newKey: K): K{
-        val oldValue: K = this.key
-        this.key = key
-        return oldValue
     }
 }
